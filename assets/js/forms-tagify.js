@@ -1,4 +1,25 @@
-"use strict";!function(){var a=document.querySelector("#TagifyBasic"),a=(new Tagify(a),document.querySelector("#TagifyReadonly")),a=(new Tagify(a),document.querySelector("#TagifyCustomInlineSuggestion")),e=document.querySelector("#TagifyCustomListSuggestion"),t=["SIGNUP","LANDING","PAYMENT","HOME", "SIGNIN", "ABOUT","DASHBOARD", "EMAIL", 'CONTACT', "SHOP", "ECOMMERCE", "CRM", "FINANCE", "FOOD", "KANBAN", "LOGISTICS", "PROFILE", "SETTING", "PRICING", "FAQ", "DOCUMENTATION", "HELP", "FEED", "SEARCH", "EDUCATION"],a=(new Tagify(a,{whitelist:t,maxTags:20,dropdown:{maxItems:20,classname:"tags-inline",enabled:0,closeOnSelect:!1}}),new Tagify(e,{whitelist:t,maxTags:20,dropdown:{maxItems:20,classname:"",enabled:0,closeOnSelect:!1}}),document.querySelector("#TagifyUserList"));let i=new Tagify(a,{tagTextProp:"name",enforceWhitelist:!0,skipInvalid:!0,dropdown:{closeOnSelect:!1,enabled:0,classname:"users-list",searchKeys:["name","email"]},templates:{tag:function(a){return`
+"use strict";
+var input = document.querySelector("#TagifyCustomInlineSuggestion");
+var tagify = new Tagify(input, {
+  whitelist: ["SIGNUP", "LANDING", "PAYMENT", "HOME", "SIGNIN", "ABOUT", "DASHBOARD", "EMAIL", 'CONTACT', "SHOP", "ECOMMERCE", "CRM", "FINANCE", "FOOD", "KANBAN", "LOGISTICS", "PROFILE", "SETTING", "PRICING", "FAQ", "DOCUMENTATION", "HELP", "FEED", "SEARCH", "EDUCATION"],
+  maxTags: 20,
+  dropdown: {
+    maxItems: 20,
+    classname: "tags-inline",
+    enabled: 0,
+    closeOnSelect: false
+  }
+});
+
+tagify.on('add', function(e) {
+  // console.log(e.detail.data.value);
+  window.parent.postMessage({ event: 'tagAdded', value: e.detail.data.value }, '*');
+});
+
+// tagify.on('remove', function(e) {
+//   console.log('Removed tag: ', e.detail.data.value);
+// });
+;!function(){var a=document.querySelector("#TagifyBasic"),a=(new Tagify(a),document.querySelector("#TagifyReadonly")),a=(new Tagify(a),document.querySelector("#TagifyCustomInlineSuggestion")),e=document.querySelector("#TagifyCustomListSuggestion"),t=["SIGNUP","LANDING","PAYMENT","HOME", "SIGNIN", "ABOUT","DASHBOARD", "EMAIL", 'CONTACT', "SHOP", "ECOMMERCE", "CRM", "FINANCE", "FOOD", "KANBAN", "LOGISTICS", "PROFILE", "SETTING", "PRICING", "FAQ", "DOCUMENTATION", "HELP", "FEED", "SEARCH", "EDUCATION"],a=(new Tagify(a,{whitelist:t,maxTags:20,dropdown:{maxItems:20,classname:"tags-inline",enabled:0,closeOnSelect:!1}}),new Tagify(e,{whitelist:t,maxTags:20,dropdown:{maxItems:20,classname:"",enabled:0,closeOnSelect:!1}}),document.querySelector("#TagifyUserList"));let i=new Tagify(a,{tagTextProp:"name",enforceWhitelist:!0,skipInvalid:!0,dropdown:{closeOnSelect:!1,enabled:0,classname:"users-list",searchKeys:["name","email"]},templates:{tag:function(a){return`
     <tag title="${a.title||a.email}"
       contenteditable='false'
       spellcheck='false'

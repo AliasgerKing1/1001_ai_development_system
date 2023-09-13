@@ -52,16 +52,18 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="./assets/js/config.js"></script>
+    <script>
+     var input = document.querySelector('tags');
+var tagify = new Tagify(input);
+
+tagify.on('add', function(e) {
+  console.log('Added tag: ', e.detail.data.value);
+});
+    </script>
     
 </head>
 
 <body>
-
-  
-  <!-- ?PROD Only: Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  
   <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar layout-without-menu">
   <div class="layout-container">
@@ -91,8 +93,7 @@
           
           
           
-          <div class="content-backdrop fade"></div>
-        </div>
+      </div>
         <!-- Content wrapper -->
       </div>
       <!-- / Layout page -->
@@ -101,12 +102,6 @@
     
     
     <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-    
-    
-    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-    <div class="drag-target"></div>
-    
   </div>
   <!-- / Layout wrapper -->
 
