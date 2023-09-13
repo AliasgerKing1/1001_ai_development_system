@@ -15,6 +15,10 @@ tagify.on('add', function(e) {
   // console.log(e.detail.data.value);
   window.parent.postMessage({ event: 'tagAdded', value: e.detail.data.value }, '*');
 });
+tagify.on('remove', function(e) {
+  window.parent.postMessage({ event: 'tagRemoved', value: e.detail.data.value }, '*');
+});
+
 
 // tagify.on('remove', function(e) {
 //   console.log('Removed tag: ', e.detail.data.value);
